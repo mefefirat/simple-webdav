@@ -1,0 +1,13 @@
+version: '3'
+services:
+  webdav:
+    image: bytemark/webdav
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      AUTH_TYPE: Digest
+      USERNAME: test
+      PASSWORD: test12345
+    volumes:
+      - /home/mfirat/dav:/var/lib/dav
