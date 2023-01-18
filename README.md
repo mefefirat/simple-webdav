@@ -1,6 +1,6 @@
 # Actions WEBDAV with curl
 
-> Reading Files/Folders
+### Reading Files/Folders
 ```bash
 $ curl --digest --user 'test:test12345' 'http://localhost/'
 ````
@@ -21,7 +21,7 @@ $ curl --digest --user 'test:test12345' 'http://localhost/'
 </body>
 </html>
 ```
-> Creating new Folder
+### Creating new Folder
 ```bash
 $ curl --digest --user 'test:test12345' -X MKCOL 'http://localhost/new_folder'
 ````
