@@ -1,6 +1,6 @@
 # WEBDAV with curl
 
-### Creating new foder on Webdav Server
+> Creating new foder on Webdav Server
 ```bash
    $ curl --digest --user 'test:test12345' -X MKCOL 'http://localhost/new_folder'
 ````
