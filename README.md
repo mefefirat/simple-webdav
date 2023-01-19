@@ -62,3 +62,21 @@ $ curl --digest --user 'test:test12345' -T '/path/test.pdf' 'http://localhost/Do
 </body>
 </html>
 ```
+
+### Renaming File
+```bash
+$ curl --digest --user 'test:test12345' MOVE --header 'Destination:http://localhost/Documents/old.pdf' 'http://localhost/Documents/new.pdf'
+````
+```Html
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+    <title>201 Created</title>
+</head>
+<body>
+    <h1>Created</h1>
+    <p>Destination /Documents/test-new.pdf has been created.</p>
+</body>
+
+</html>
+```
