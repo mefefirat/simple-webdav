@@ -44,3 +44,21 @@ $ curl --digest --user 'test:test12345' -X DELETE 'http://localhost/Advertisemen
 ````
 ```Html
 HTTP response status codes: 204
+```
+
+### Uploading File
+```bash
+$ curl --digest --user 'test:test12345' -T '/path/test.pdf' 'http://localhost/Documents/test.pdf'
+````
+```Html
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+    <title>201 Created</title>
+</head>
+<body>
+    <h1>Created</h1>
+    <p>Resource /Documents/test.pdf has been created.</p>
+</body>
+</html>
+```
