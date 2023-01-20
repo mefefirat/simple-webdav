@@ -1,16 +1,14 @@
-
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const port = 3000;
 const webdav = require("./models/webdav");
 
 app.get('/*', async (req, res) => {
 
     try {
-        let list = await webdav.List(req.url);
-        res.send(list);
-    }
-    catch (error) {
+        let list = await webdav.getDirectoryContents(req.url);
+        res.status(200).send(list);
+    } catch (error) {
         if(error.response.status === 404)
         {
             let message = {status: 404, message: "Not Found"}
@@ -24,7 +22,7 @@ app.get('/*', async (req, res) => {
     }
 });
 
-//folder name regex
+//folder name sample regex
 //^[^\s^\x00-\x1f\\?*:"";<>|\/.][^\x00-\x1f\\?*:"";<>|\/]*[^\s^\x00-\x1f\\?*:"";<>|\/.]+$
 app.mkcol('/*', async (req, res) => {
 
