@@ -1,8 +1,9 @@
 version: '3'
 services:
+
   webdav:
+    container_name: webdav
     image: bytemark/webdav
-    restart: always
     ports:
       - "80:80"
     environment:
@@ -10,4 +11,29 @@ services:
       USERNAME: test
       PASSWORD: test12345
     volumes:
-      - /home/mfirat/dav:/var/lib/dav
+      - /var/www/web-dav/data:/var/lib/dav
+    networks:
+      webdav:
+        ipv4_address: 10.15.0.2
+
+  nodejs:
+    container_name: webdav-nodejs
+    image: node:latest
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/www/web-dav/nodejs:/var/www/html
+    networks:
+      webdav:
+        ipv4_address: 10.15.0.3
+networks:
+  webdav:
+    name: webdav
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.15.0.0/16"
+          gateway: "10.15.0.1"
+
