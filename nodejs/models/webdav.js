@@ -3,7 +3,7 @@ const webdavClient = require("../config/webdav");
 const Model = {};
 
 //Reading Files/Folders
-Model.getDirectoryContents = (path) => {
+Model.GetDirectoryContents = (path) => {
     return new Promise(async (resolve, reject) => {
         try {
             const result = await webdavClient.getDirectoryContents(path);
@@ -18,8 +18,16 @@ Model.getDirectoryContents = (path) => {
 Model.CreateDirectory = (path) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const result = await webdavClient.createDirectory(path);
-            return resolve(result)
+
+            if (await webdavClient.exists(path) === false) {
+                await webdavClient.createDirectory(path);
+                return resolve("success")
+            }
+            else
+            {
+                return reject("Destination Folder Already Exists")
+            }
+
         } catch (error){
             return reject(error)
         }
@@ -60,5 +68,3 @@ Model.PropPatch = () => {
 }
 
 module.exports = Model;
-
-

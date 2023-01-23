@@ -20,13 +20,19 @@ services:
     container_name: webdav-nodejs
     image: node:latest
     tty: true
+    build:
+      context: /var/www/html
+    working_dir: /var/www/html
+    #command: node index.js --inspect-brk=0.0.0.0 --watch
     ports:
       - "3000:3000"
+      - "9229:9229"
     volumes:
       - /var/www/web-dav/nodejs:/var/www/html
     networks:
       webdav:
         ipv4_address: 10.15.0.3
+
 networks:
   webdav:
     name: webdav
